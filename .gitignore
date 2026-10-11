@@ -1,0 +1,10 @@
+node_modules/
+.convex/
+dist/
+.DS_Store
+.env
+.env.local
+.firebase/
+*-debug.log
+supabase/.temp/
+supabase/.branches/

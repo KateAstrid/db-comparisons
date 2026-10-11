@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Same message, three databases</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <form id="composer">
+      <input id="body" type="text" placeholder="hello" autocomplete="off" spellcheck="false" />
+      <button type="submit">Send</button>
+      <input id="count" type="number" min="1" step="1" placeholder="1" inputmode="numeric" />
+      <label class="size">
+        <input id="size" type="number" min="1" max="1024" step="1" inputmode="numeric" />
+        <span>KB</span>
+      </label>
+      <button id="burst" type="button">Send them</button>
+      <button id="clear" type="button">Clear</button>
+    </form>
+
+    <section class="lanes">
+      <article data-lane="stdb">
+        <h2>SpacetimeDB</h2>
+        <div class="screen"><ul class="slips"></ul><p class="loader" hidden><span></span></p></div>
+        <div class="conn on"><span class="wire"></span><span>open connection</span></div>
+        <p class="req save-row"><span>save</span> <b class="save">—</b></p>
+        <p class="req slow-row"><span>slowest</span> <b class="slow">—</b></p>
+        <p class="req read-row"><span>read</span> <b class="read">—</b></p>
+        <p class="status">opening the connection</p>
+      </article>
+      <article data-lane="convex">
+        <h2>Convex</h2>
+        <div class="screen"><ul class="slips"></ul><p class="loader" hidden><span></span></p></div>
+        <div class="conn on"><span class="wire"></span><span>open connection</span></div>
+        <p class="req save-row"><span>save</span> <b class="save">—</b></p>
+        <p class="req slow-row"><span>slowest</span> <b class="slow">—</b></p>
+        <p class="req read-row"><span>read</span> <b class="read">—</b></p>
+        <p class="status">opening the connection</p>
+      </article>
+      <article data-lane="supabase">
+        <h2>Supabase</h2>
+        <div class="screen"><ul class="slips"></ul><p class="loader" hidden><span></span></p></div>
+        <div class="conn"><span class="wire"></span><span>on for one request</span></div>
+        <p class="req save-row"><span>save</span> <b class="save">—</b></p>
+        <p class="req slow-row"><span>slowest</span> <b class="slow">—</b></p>
+        <p class="req read-row"><span>read</span> <b class="read">—</b></p>
+        <p class="status">send waits for SpacetimeDB and Convex</p>
+      </article>
+    </section>
+
+    <table class="log">
+      <thead>
+        <tr>
+          <th>messages</th>
+          <th>SpacetimeDB</th>
+          <th>Convex</th>
+          <th>Supabase</th>
+        </tr>
+      </thead>
+      <tbody id="attempts"></tbody>
+    </table>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
